@@ -7,5 +7,5 @@ Course repository of Data Types and Structures in Python and R (HEIN11068) inclu
 Download the actual course material from the GitHub repository:
 
 ```bash
-git clone https://github.com/bblankinship/DTSPRcourse-AY-2023-24
+git clone git@github.com:bblankinship/DTSPRcourse-AY-2023-24.git
 ```
