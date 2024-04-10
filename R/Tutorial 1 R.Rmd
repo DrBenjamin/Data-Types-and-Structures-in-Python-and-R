@@ -65,6 +65,7 @@ Sys.setenv(TZ="Europe/London") # set timezone (TZ argument) to whatever timezone
 
 library(tidyverse)
 
+install.packages("gapminder") # install the gapminder package
 library(gapminder) # for our data
 ```
 
