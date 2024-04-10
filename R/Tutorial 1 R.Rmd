@@ -3,9 +3,12 @@ title: "Tutorial 1: R and RMarkdown"
 author: "Benjamin"
 date: "10th April 2024"
 output:
-  html_document: default
-  pdf_document:
-     pandoc_args: ["--extract-media", "."]
+  rmdformats::robobook
+  #html_document:
+    #prettydoc::html_pretty:
+      #theme: spacelab
+  #pdf_document:
+    #pandoc_args: ["--extract-media", "."]
 ---
 
 ```{r setup, include=FALSE}
@@ -157,7 +160,7 @@ To get the link to a picture from a webpage go to your internet browser of choic
 
 Insert the image of the R logo below. Afterwards, try to insert an image from the a URL as well!
 
-![RLogo](https://github.com/bblankinship/DTSPRcourse-AY-2023-24/blob/main/figures/Rlogo.png)
+![Ben](https://noteable.edina.ac.uk/user/d7i6m6qmi3q5tglmiqr86m/rstudio/files/Course/img/Ben.png)
 
 *Hint* Remember that R cannot find an image on your computer as we are using Noteable, which is a cloud-based service. You will need to put the image on your Noteable file directory and tell R where to find it. 
 

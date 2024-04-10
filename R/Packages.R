@@ -1,8 +1,14 @@
-# R-Paket 'devtools' mittels CRAN (R-App-Store) installieren
-install.packages("devtools", dependencies = TRUE) # Paket sowie Abhängigkeiten installieren
-library(devtools) # Paket laden, um Funktion 'install_github' ausführen zu können
+# R-Pakages with CRAN (R-App-Store) or devtools (Github)
+install.packages("devtools", dependencies = TRUE)
+library(devtools)
 
-# Alle sonstigen für die Vorlesungen wichtigen R-Pakete installieren
+# Course packages 
+install.packages("rmarkdown", dependencies = TRUE)
+install.packages("bookdown", dependencies = TRUE)
+install.packages("prettydoc", dependencies = TRUE)
+install.packages("rmdformats", dependencies = TRUE)
+
+# Other packages
 install.packages("XML", dependencies = TRUE)
 install.packages("Rcpp", dependencies = TRUE)
 install.packages("stringr", dependencies = TRUE)
