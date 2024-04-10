@@ -1,9 +1,11 @@
 ---
 title: "Tutorial 1: R and RMarkdown"
-author: "YOUR NAME HERE"
-date: "DATE HERE"
+author: "Benjamin"
+date: "10th April 2024"
 output:
   html_document: default
+  pdf_document:
+     pandoc_args: ["--extract-media", "."]
 ---
 
 ```{r setup, include=FALSE}
@@ -29,7 +31,7 @@ You can either click the install button which will run `install.packages("gapmin
 
 # Task 1
 
-The YAML at the top of the document is the metadata. Put your name in the YAML as well as today's date and knit your document to see what this has changed. 
+The YAML at the top of the document is the **metadata**. Put your name in the YAML as well as today's date and knit your document to see what this has changed. 
 
 Rather than hard coding the date, you can use 
 
@@ -60,12 +62,12 @@ Choose some of the date time formatting options and re-knit your document to see
 After the global code chunk at the top under your YAML, it is good practice to have a code chunk where you call the packages you will be using in your document with the `library()` function. 
 
 ```{r libraries}
-Sys.setenv(TZ="Europe/London") # set timezone (TZ argument) to whatever timezone you may be in, I am in the UK so am using the TZ identifier for London. The allows the to packages to work as intended
+#Sys.setenv(TZ="Europe/London") # set timezone (TZ argument) to whatever timezone you may be in, I am in the UK so am using the TZ identifier for London. The allows the to packages to work as intended
 # for a list of TZ identifiers see here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 library(tidyverse)
 
-install.packages("gapminder") # install the gapminder package
+#install.packages("gapminder") # install the gapminder package
 library(gapminder) # for our data
 ```
 
@@ -94,6 +96,7 @@ gap_data <- gapminder
 
 # correlation for inline code example below 
 LePcor <- cor.test(gap_data$lifeExp, gap_data$pop)
+LePcor
 ```
 
 
@@ -101,10 +104,18 @@ LePcor <- cor.test(gap_data$lifeExp, gap_data$pop)
 
 Look in the global environment pane and double check that we now have an object called `gap_data` and `LePcor` listed there. If you want to see the data in a spreadsheet like manner, you can double click on the object `gap_data` or use the function `View(gap_data)`. Try it now!
 
+```{r viwe}
+#View(gap_data)
+```
 
 # Task 5 
 
 Using the help documentation, find out what data the `gapminder` dataset covers. 
+
+```{r help}
+help(gapminder)
+??gapminder     # metadata
+```
 
 *Hint* you can use the help tab or the `?` notation 
 
@@ -123,6 +134,8 @@ You can easily insert images into your R Markdown file either from a webpage or 
 1. From a webpage 
 
 ![Beach Chairs](https://www.incimages.com/uploaded_files/image/1920x1080/getty_598789974_2000133320009280368_367564.jpg)
+
+
 To get the link to a picture from a webpage go to your internet browser of choice, Images, and right click on the image and select "Copy Image Link".
 
 **Note**: When knitting to pdf, you need to add another line of code in the YAML for LaTeX `graphicx` to pull an image from the internet and then save them locally in the same directory as the RMD file. 
@@ -133,7 +146,7 @@ To get the link to a picture from a webpage go to your internet browser of choic
 
 2. From a file 
 
-` ![alt text](file path.file extension) `
+![Ben](~/Course/img/Ben.png)
 
 *Note* the back ticks are not needed in line 135, I have only included them so that there is not a knitting error, when completing the task remove the backticks as in line 124. 
 
@@ -143,6 +156,8 @@ To get the link to a picture from a webpage go to your internet browser of choic
 # Task 7 
 
 Insert the image of the R logo below. Afterwards, try to insert an image from the a URL as well!
+
+![RLogo](https://github.com/bblankinship/DTSPRcourse-AY-2023-24/blob/main/figures/Rlogo.png)
 
 *Hint* Remember that R cannot find an image on your computer as we are using Noteable, which is a cloud-based service. You will need to put the image on your Noteable file directory and tell R where to find it. 
 
@@ -193,7 +208,7 @@ Chunk names are not necessarily required to knit, but are good practice and help
 * unique 
 * do not use spaces, rather use dashes (-) 
 * use alphanumeric characters (a-z, A-Z and 0-9), because they are not special characters and will surely work for all output formats
-* spaces and underscores in particular, may cause trouble in certain packages, such as `bookdown`. 
+* spaces and underscores in particular, may cause trouble in certain packages, such as `bookdown`.
 
 We do not cover the `bookdown` package as part of this course, but it extends the functionality of RMarkdown to allow for figures and tables to be easily cross-referenced within your text (among other things). 
 
