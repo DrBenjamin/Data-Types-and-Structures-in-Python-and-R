@@ -1,9 +1,11 @@
-# R-Pakages with CRAN (R-App-Store) or devtools (Github)
+# R-packages with CRAN (R-App-Store) or devtools (Github)
 install.packages("devtools", dependencies = TRUE)
 library(devtools)
 
-# Course packages 
+# Course packages
 install.packages("rmarkdown", dependencies = TRUE)
+install.packages("tidyverse", dependencies = TRUE)
+install.packages("gapminder", dependencies = TRUE)
 install.packages("bookdown", dependencies = TRUE)
 install.packages("prettydoc", dependencies = TRUE)
 install.packages("rmdformats", dependencies = TRUE)
