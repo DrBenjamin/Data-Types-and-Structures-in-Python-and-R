@@ -10,6 +10,10 @@ install.packages("bookdown", dependencies = TRUE)
 install.packages("prettydoc", dependencies = TRUE)
 install.packages("rmdformats", dependencies = TRUE)
 
+# Course package from external lecturer
+install.packages("timeplyr", dependencies = TRUE)
+??timeplyr
+
 # Other packages
 install.packages("XML", dependencies = TRUE)
 install.packages("Rcpp", dependencies = TRUE)
