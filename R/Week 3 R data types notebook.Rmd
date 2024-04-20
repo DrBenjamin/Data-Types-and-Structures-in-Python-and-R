@@ -88,12 +88,7 @@ When working with data frames (which we will learn more about in Week 4), there 
 
 *Note* reminder of the namespace syntax which uses double colon `::` means `package::function()`. So the above on line 83 means the `glimpse()` function from the `dplyr` package 
 
-Let's discuss each of these R data types one by one. 
-
-```{r}
-data <- c(1, 2, 3, 4, 5)
-data
-```
+Let's discuss each of these R data types one by one.
 
 ```{r libraries, message = FALSE, echo = FALSE}
 # first lets load the libraries we need for this notebook 
@@ -102,12 +97,6 @@ Sys.setenv(TZ = "Europe/London") # set timezone (TZ argument) to whatever timezo
 
 library(tidyverse)
 library(lubridate) #if using tidyverse 2.0.0 or later lubridate will be loaded with the tidyverse
-
-# Code folding
-func4 <- function(function1 = 1) {
-  function1
-}
-func4()
 ```
 
 ## 2. Logical 

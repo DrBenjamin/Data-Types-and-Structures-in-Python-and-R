@@ -23,6 +23,9 @@ install.packages("timeplyr", dependencies = TRUE)
 ??timeplyr
 
 # Other packages
+install.packages("R6", dependencies = TRUE)
+install.packages("jsonlite", dependencies = TRUE)
+install_github("https://github.com/ManuelHentschel/vscDebugger")
 install.packages("ggplot2", dependencies = TRUE)
 install.packages("plotly", dependencies = TRUE)
 install.packages("openai", dependencies = TRUE)
