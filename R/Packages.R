@@ -2,6 +2,14 @@
 install.packages("devtools", dependencies = TRUE)
 library(devtools)
 
+# VS Code Stuff
+# Language Server protocol (for editor to integrate auto completion etc.)
+install.packages("languageserver", dependencies = TRUE)
+# 
+install.packages("httpgd")
+# python -m pip install --upgrade radian
+
+
 # Course packages
 install.packages("rmarkdown", dependencies = TRUE)
 install.packages("tidyverse", dependencies = TRUE)
