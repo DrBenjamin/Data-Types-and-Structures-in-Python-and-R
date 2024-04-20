@@ -23,6 +23,10 @@ install.packages("timeplyr", dependencies = TRUE)
 ??timeplyr
 
 # Other packages
+install.packages("ggplot2", dependencies = TRUE)
+install.packages("plotly", dependencies = TRUE)
+install.packages("openai", dependencies = TRUE)
+install.packages("lintr", dependencies = TRUE)
 install.packages("XML", dependencies = TRUE)
 install.packages("Rcpp", dependencies = TRUE)
 install.packages("stringr", dependencies = TRUE)

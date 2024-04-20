@@ -9,3 +9,9 @@ Download the actual course material from the GitHub repository:
 ```bash
 git clone git@github.com:bblankinship/DTSPRcourse-AY-2023-24.git
 ```
+
+## RMarkdown preview
+
+```r
+rmarkdown::run("your-rmd-document.Rmd")
+```

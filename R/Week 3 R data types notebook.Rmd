@@ -90,13 +90,24 @@ When working with data frames (which we will learn more about in Week 4), there 
 
 Let's discuss each of these R data types one by one. 
 
+```{r}
+data <- c(1, 2, 3, 4, 5)
+data
+```
+
 ```{r libraries, message = FALSE, echo = FALSE}
 # first lets load the libraries we need for this notebook 
 
 Sys.setenv(TZ = "Europe/London") # set timezone (TZ argument) to whatever timezone you may be in. The allows the to packages to work as intended
 
 library(tidyverse)
-library(lubridate) #if using tidyverse 2.0.0 or later lubridate will be loaded with the tidyverse 
+library(lubridate) #if using tidyverse 2.0.0 or later lubridate will be loaded with the tidyverse
+
+# Code folding
+func4 <- function(function1 = 1) {
+  function1
+}
+func4()
 ```
 
 ## 2. Logical 

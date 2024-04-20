@@ -1,5 +1,6 @@
 library(tidyverse)
 library(lubridate)
+library(gapminder)
 
 Sys.timezone()
 
@@ -13,3 +14,18 @@ wday(date_var) # day of the week
 hour(date_var)
 minute(date_var)
 second(date_var)
+
+print(date_var)
+
+# Testing the r lintr with a simple example of a line which contains a space at the end
+??gapminder
+function4 <- function() {
+  data <- gapminder
+  return(data)
+}
+
+data <- function4()
+plot(data$year, data$lifeExp)
+
+# Test
+function4()

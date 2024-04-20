@@ -26,7 +26,7 @@ R Markdown documents are comprised of 3 primary elements:
 
 Unlike a Jupyter notebook which is comprised of different types of cells, RMarkdown files only have a cell equivalent for code in the form of code chunks. 
 
-# Task 0 
+# Task 0
 
 You may have noticed a popup when you opened this RMD file that at the top stating "Package gapminder required but is not installed". This is because the gapminder package is not already in Noteable. You only need to install a package once, but every time you want to use you need to call it from the library. You can think of a package like a book - you only need to buy a book once from the store, but every time you want to access some information within it, you need to pull it off your bookshelf and open it. Buying the book from the store is equivalent to `install.packages("packagename")` in code while pulling the book off the bookshelf to use it is equivalent to`library(packagename)` in code.
 
