@@ -4,11 +4,11 @@ author: "Benjamin"
 date: "10th April 2024"
 output:
   rmdformats::robobook
+  #pdf_document:
+    #pandoc_args: ["--extract-media", "."]
   #html_document:
     #prettydoc::html_pretty:
       #theme: spacelab
-  #pdf_document:
-    #pandoc_args: ["--extract-media", "."]
 ---
 
 ```{r setup, include=FALSE}
@@ -149,7 +149,7 @@ To get the link to a picture from a webpage go to your internet browser of choic
 
 2. From a file 
 
-![Ben](~/Course/img/Ben.png)
+![Ben](../img/Ben.png)
 
 *Note* the back ticks are not needed in line 135, I have only included them so that there is not a knitting error, when completing the task remove the backticks as in line 124. 
 
@@ -160,7 +160,7 @@ To get the link to a picture from a webpage go to your internet browser of choic
 
 Insert the image of the R logo below. Afterwards, try to insert an image from the a URL as well!
 
-![Ben](https://noteable.edina.ac.uk/user/d7i6m6qmi3q5tglmiqr86m/rstudio/files/Course/img/Ben.png)
+[Ben](https://noteable.edina.ac.uk/user/d7i6m6qmi3q5tglmiqr86m/rstudio/files/Course/img/Ben.png)
 
 *Hint* Remember that R cannot find an image on your computer as we are using Noteable, which is a cloud-based service. You will need to put the image on your Noteable file directory and tell R where to find it. 
 
