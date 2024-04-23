@@ -119,18 +119,17 @@ a_true_variable
 
 
 ```{r logical-3}
-TRUE <- 90 # this will produce an error 
+#TRUE <- 90 # this will produce an error
 
 T <- 90 # but this will not!! Hence why you should not use T or F as synonyms for TRUE and FALSE
 
-typeof(T) # now T is a double rather than logical data type 
-
+typeof(T) # now T is a double rather than logical data type
 ```
 
 In Python, the Boolean data type values are True and False. If you attempt this in R, you will get an error as they need to be in all capital letters. 
 
 ```{r logical-4}
-f <- False # this will produce an error 
+#f <- False # this will produce an error
 ```
 
 *Note* one of the many benefits of working in RStudio is the 4 pane layout. As you go through this notebook and run the code creating different objects, observe the "Global Environment" pane. Here you will see all of the different R objects with a summary of what they contain and how they are typed. To view one of these objects, you can use the code `View(object)`. When working with data structures you can double click on the data object in the Global Environment which will automatically run the `View()` function for you.
@@ -186,7 +185,7 @@ typeof(ct)
 ```{r logical-coercion-6}
 nt <- as.numeric(TRUE)
 
-nt 
+nt
 
 class(nt)
 ```
@@ -207,15 +206,15 @@ Comparison operators:
 ```{r logical-comp-operators}
 # using the equal to comparison
 # this should evaluate to FALSE
-100 == 205 
+100 == 205
 
 # using the not equal to comparison
 # this should evaluate to TRUE
-100 != 205 
+100 != 205
 
 # using the greater than comparison
 # this should evaluate to FALSE
-100 > 205 
+100 > 205
 
 # using the less than comparison
 # this should evaluate to TRUE
@@ -223,11 +222,11 @@ Comparison operators:
 
 # using the greater than or equal to comparison
 # this should evaluate to FALSE
-100 >= 205 
+100 >= 205
 
 # using the less than or equal to comparison
 # this should evaluate to TRUE
-100 <= 205 
+100 <= 205
 ```
 
 As an example, lets create a **vector** (the most basic data structure in R that we will learn about more next week, essentially a simple list) of numbers and ask R if the elements were greater than 5. Our output is going to be a logical vector where each element is either `TRUE` or `FALSE`
@@ -245,7 +244,6 @@ y
 # View class
 class(y)
 class(x)
-
 ```
 
 You can also create a vector of logical statements, like the output of y above. And then convert these logical values to numeric and back given the TRUE == 1 and FALSE == 0 mapping.  
@@ -254,7 +252,7 @@ You can also create a vector of logical statements, like the output of y above. 
 vlog <- c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE)
 
 vlog
-
+class(vlog)
 ```
 
 
@@ -274,14 +272,13 @@ vlog_l
 This also means that you can do math with logical values! This is useful if, for example, you’re trying to see how many TRUE values you have in your vector. In fact, applying any math operations to a logical vector will automatically convert the values to 1s and 0s.
 
 ```{r logical-math}
-sum(vlog) # there are a total of 3 TRUE values or 1s 
+sum(vlog) # there are a total of 3 TRUE values or 1s
 
-min(vlog) 
+min(vlog)
 
 max(vlog)
 
 mean(vlog) # this is not necessarily meaningful, but the point is that it does not throw an error because the logical vector is being treated as 1s and 0s (AKA as numbers)
-
 ```
 
 
@@ -299,7 +296,6 @@ There are some built-in functions when working with numeric data that we can use
 
 ```{r rounding-behavior}
 # Based on what is mentioned above in line 290, what do you expect the output to be for the following round functions? Think about this before running the code 
-
 round(4.5)
 
 round(5.5)
@@ -356,13 +352,13 @@ typeof(scnum2)
 Notably, because integers and doubles are stored differently and have differing levels of precision, using the `as.integer()` function truncates floating-point numbers so that the result is the nearby integer closer to zero (rounding down in other words). 
 
 ```{r numeric-coercion-1}
-# create a double 
+# create a double
 dbl1 <- 4.8573
 
-# check the data type 
+# check the data type
 typeof(dbl1)
 
-# check the data class 
+# check the data class
 class(dbl1)
 
 # check the storage mode - for numeric data this will always be numeric as the higher order class 
@@ -371,8 +367,8 @@ mode(dbl1)
 
 
 ```{r numeric-coercion-2}
-#convert object dbl1 to an integer 
-dbl1_int <- as.integer(dbl1) #this will truncate the value of a double 
+# convert object dbl1 to an integer
+dbl1_int <- as.integer(dbl1) # this will truncate the value of a double
 
 dbl1_int
 
@@ -395,7 +391,7 @@ ii2
 
 class(ii2)
 typeof(ii2)
-mode(ii2) # this is numeric as numeric is the mode of storage of number based data in R for numeric, double, and integer types 
+mode(ii2) # this is numeric as numeric is the mode of storage of number based data in R for numeric, double, and integer types
 
 ii_vec <- c(44L, 687L, 2L, 60L)
 ii_vec
@@ -450,13 +446,13 @@ c2num
 ### 3.2 Built-in functions 
 
 ```{r num-round}
-round(0.5) # rounds down as the nearest even digit is 0 
+round(0.5) # rounds down as the nearest even digit is 0
 
-round(-1.5) # rounds up to -2 as it is the nearest even digit 
+round(-1.5) # rounds up to -2 as it is the nearest even digit
 
-round(45.5) # rounds up 
+round(45.5) # rounds up
 
-round(46.5) # rounds down 
+round(46.5) # rounds down
 
 round(30.7)
 
@@ -486,28 +482,27 @@ There are 7 arithmetic operators in R.
 ```{r arithmetic-operators}
 # assign the values "7" and "3" to objects "xx" and "yy"
 xx <- 7
-yy <- 3 
+yy <- 3
 
-# arithmetic operators 
+# arithmetic operators
 
-## addition 
-xx + yy 
+## addition
+xx + yy
 
-## subtraction 
+## subtraction
 xx - yy
 
-## division 
-xx / yy  
+## division
+xx / yy
 
 ## integer division/floor division
 xx %/% yy
 
-## exponent 
+## exponent
 xx ^ yy
 
-## modulus 
+## modulus
 xx %% yy
-
 ```
 
 As a statistical programming language, there is of course *tons* more than can be done in R with numeric data. We will see more of this as we explore different data structures next week. 
