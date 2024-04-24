@@ -147,8 +147,13 @@ Go through the data set one column at a time answering the above questions for e
 
 ```{r task7}
 ## your answer here 
+gss_cat_income <- gss_cat['rincome']
+typeof(gss_cat_income)
+gss_cat_income2 <- gss_cat[['rincome']]
+typeof(gss_cat_income2)
 
-
+gss_cat_income_cat <- as_factor(gss_cat_income2)
+levels(gss_cat_income_cat)
 ```
 
 > *If you are pair programming, switch who is driving now* Remember to run the code chunk loading packages when the new driver takes over
