@@ -552,7 +552,6 @@ of Scotland'
 string2
 
 cat(string2)
-
 ```
 
 If you want to include a quote character as part of the string itself, you may be tempted to try something as follows:
@@ -560,7 +559,7 @@ If you want to include a quote character as part of the string itself, you may b
 ```{r character-quote}
 #'This character contains a single quote (') character.'
 
-# un-comment the code above on line 562 and run it 
+# un-comment the code above on line 562 and run it
 
 ## I have commented it out because it produces an error, which then makes RStudio include a red circle with an x in it at this and subsequent line numbers to highlight to us that there is an issue with out code. You can hover your cursor above the x to see what the error is without running the code even! Un-comment the code and see what I mean 
 ```
@@ -572,18 +571,14 @@ But, as you can see this produces an error. We can do 2 things instead:
 
 ```{r character-quote-1}
 # option 1
-
 "This string contains a single quote (') character."
 
 'This string contains a double quote (") character.'
-
 ```
 
 ```{r character-quote-2}
-# option 2 
-
+# option 2
 'This string contains a single quote (\') character.'
-
 ```
 
 To see the full list of escape sequence special characters run the following code
@@ -601,10 +596,10 @@ To include a literal backslash in a string using escape characters, you need to 
 ```{r character-escape}
 "This string contains a backlash \\ character"
 ```
+
 When you run the string above, the output shows both backslashes. What is happening here? The printed representation of a string is not the same as the string itself, because the printed representation shows the escapes. To see the raw contents of the string, use `writeLines()`:
 
 ```{r character-raw-string}
-
 writeLines("This string contains a backlash \\ character")
 ```
 
@@ -620,12 +615,12 @@ ex_cvec <- c(3, 56.7, 2, 90, "3")
 ex_cvec
 class(ex_cvec)
 
-sum(ex_cvec) # produces an error - try and read the error to understand what went wrong 
+#sum(ex_cvec) # produces an error - try and read the error to understand what went wrong 
 
-# we can easily fix this with the as.double function to change the data type 
+# we can easily fix this with the as.double function to change the data type
 ex_cvec_num <- as.double(ex_cvec)
-
-sum(ex_cvec_num) # no error, happy days with the expected data type 
+ex_cvec_num
+sum(ex_cvec_num) # no error, happy days with the expected data type
 ```
 
 As described above in the Numeric section, when converting a character object to numeric with `as.numeric()`, anything that cannot be parsed will turn into NA. This means anything other than numbers in quotation marks. 
@@ -643,37 +638,36 @@ class(ex_cvec_c)
 ### 4.2 Working with character data & regular expressions 
 
 ```{r string-length}
-# let's remind ourselves what string1 consisted of 
+# let's remind ourselves what string1 consisted of
 string1
 
 nchar(string1)
 
-## or stringr version 
-
+## or stringr version
 str_length(string1)
 ```
 
 You can use the `str_detect()` function detect the presence or absences of a pattern in a string. The regular expression "[aeiou]" matches any single character that is a vowel. 
 
 ```{r strdetect}
-str_detect(string1, pattern = "[aeiou]") 
+str_detect(string1, pattern = "[aeiou]")
 
-# if you input a character vector, str_detect will output a logical vector 
+# if you input a character vector, str_detect will output a logical vector
 
 c_vec <- c("The", "summer", "is", "a", "great", "time", "to", "go", "to", "the", "beach")
 
 str_detect(c_vec, pattern = "mm")
 ```
+
 You can use `str_count()` to count the number of matches in a string. 
 
 ```{r strcount}
 str_count(string1, pattern = "[aeiou]") # there are 10 vowels in our string 
 
 str_count(c_vec, pattern = "[aeiou]")
-
 ```
 
-You can use `str_view()` to view the HTML rending of a regular expression match. This shows the first match. The view all matches, you can use `str_view_all()`
+You can use `str_view()` to view the HTML rendering of a regular expression match. This shows the first match. The view all matches, you can use `str_view_all()`
 
 ```{r strview}
 str_view(string1,  pattern = "[aeiou]")
@@ -701,12 +695,13 @@ str_subset(c_vec, pattern = "o")
 
 str_subset(c_vec, pattern = "o", negate = TRUE)
 ```
+
 You can use `str_locate()` to locate the position of patterns in a string. In the output, the first column, start, gives the position at the start of the match, and the second column, end, gives the position of the end.
 
 ```{r}
-str_locate(c_vec, pattern = "t") 
-
+str_locate(c_vec, pattern = "t")
 ```
+
 Following on from this, if you wanted to extract the matching patterns from a string rather than just locate them, you can use `str_extrct()`
 
 ```{r strextract-1}
@@ -724,11 +719,13 @@ The output is only the first extracted match! To get all matches we can use `str
 ```{r strextractall}
 str_extract_all(string1, pattern = "[aeiou]")
 ```
+
 You can use `str_match()` to extract matched groups from a string. This function extracts parts of the match defined by parentheses 
 
 ```{r strmatch-1}
-str_match(string1, pattern = "(.)[aeiou](.)") # regular expression to extract characters on either side of the vowel 
+str_match(string1, pattern = "(.)[aeiou](.)") # regular expression to extract characters on either side of the vowel
 ```
+
 When you want to change or replace aspects of a string, you can use `str_replace()`. 
 
 ```{r strreplace}
@@ -738,6 +735,7 @@ str_replace(c_vec, pattern = "[aeiou]", replacement = "?")
 
 str_replace_all(c_vec, pattern = "[aeiou]", replacement = "?")
 ```
+
 To split up your string into multiple pieces, you can use `str_split()`
 
 ```{r strsplit}
@@ -747,7 +745,7 @@ str_split(string1, pattern = "[aeiou]|[AEIOU]") # here I have used the or operat
 To join multiple strings together the `stringr` package has `str_c()`:
 
 ```{r}
-# lets join the c_vec into a sigle string rather than a vector of strings 
+# lets join the c_vec into a sigle string rather than a vector of strings
 c_vec
 
 str_c(c_vec, collapse = "- ")
