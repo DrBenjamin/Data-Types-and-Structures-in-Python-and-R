@@ -670,6 +670,7 @@ str_count(c_vec, pattern = "[aeiou]")
 You can use `str_view()` to view the HTML rendering of a regular expression match. This shows the first match. The view all matches, you can use `str_view_all()`
 
 ```{r strview}
+??str_view
 str_view(string1,  pattern = "[aeiou]")
 
 str_view_all(string1,  pattern = "[aeiou]")
