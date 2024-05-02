@@ -799,7 +799,7 @@ More generally, when you wish to specify levels or labels when coercing a nomina
 ```{r obj-remind}
 # if you are returning to this notebook, you can find where the objects were created by searching with CTRL+F or CMD+F on a Mac 
 
-ii_vec # remind ourselves of the numeric vector we created above 
+ii_vec # remind ourselves of the numeric vector we created above
 
 vlog # and of the logical vector
 ```
@@ -809,7 +809,7 @@ Logical to nominal and ordinal factor
 ```{r fct-coercion-1}
 ii_vec_f <- as_factor(ii_vec)
 
-ii_vec_f 
+ii_vec_f
 
 ii_vec_fo <- as.ordered(ii_vec)
 
@@ -845,11 +845,11 @@ Note that the default in R lexical ordering, so alphabetic order, unless otherwi
 ```{r lexical-ordering}
 mm <- c("Dec", "Apr", "Jan", "Mar")
 
-mm 
+mm
 
 typeof(mm)
 
-# by default sorting in R is alphabetical 
+# by default sorting in R is alphabetical
 sort(mm)
 ```
 
@@ -874,8 +874,8 @@ is.ordered(mm_f)
 Note that `mm_f` is not ordered, rather we have just sorted the factor levels in a useful way. To make the factor ordinal (AKA ordered), we can pass the data object to `as.ordered()` in our tidy data flow.   
 
 ```{r fct-coercion-5}
-mm_fo <- mm %>% 
-  fct(levels = months_levels) %>% 
+mm_fo <- mm %>%
+  fct(levels = months_levels) %>%
   as.ordered()
 
 summary(mm_fo)
@@ -892,7 +892,7 @@ In plain language, this code says "take the data object mms and then make it a f
 Any values not in the levels set will bring up an error when using `fct()`, which is one of the many reasons to use this function. You will not be unintentionally creating missing values with typos!
 
 ```{r fct-coercion-6}
-mm_f2 <- fct(c("feb", "Aug", "May", "Jun"), levels = months_levels) # this will produce an error as feb does not exist in month_levels
+#mm_f2 <- fct(c("feb", "Aug", "May", "Jun"), levels = months_levels) # this will produce an error as feb does not exist in month_levels
 
 mm_f2 <- fct(c("Feb", "Aug", "May", "Jun"), levels = months_levels)
 
@@ -907,11 +907,10 @@ fct(c("Dec", "Apr", "Jan", "Mar"))
 
 # more explicit code, not relying on defaults
 fct(c("Dec", "Apr", "Jan", "Mar"), levels = unique(mm))
-
 ```
 
 ```{r fct-coercion-8}
-mm_fo %>% 
+mm_fo %>%
   fct_inorder()
 # the levels are now ordered by how they first appeared in the data, not by the months_levels list 
 ```
@@ -923,10 +922,9 @@ In plain language, the code above says "take the data object mm_fo then take tha
 In the section above we already started looking at some of the functions for working with factors, particularly when creating them. Now let's look at different functions for modifying and working with factors. 
 
 ```{r fct-injuries}
-# first lets create an object of unintentional injury types to work with 
-
+# first lets create an object of unintentional injury types to work with
 injury <- rep(c("Fall", "Fall", "Transport accident", "Crushing",
-                "Scakld", "Accidental exposure"), 4) %>% 
+                "Scakld", "Accidental exposure"), 4) %>%
   factor()
 
 injury
@@ -936,23 +934,24 @@ levels(injury)
 As we can see, by default our levels are sorted in alphabetical order. To instead change this to be by the frequency of values, we can do the following: 
 
 ```{r fctinfreq}
-fct_infreq(injury) %>% 
+fct_infreq(injury) %>%
   levels()
 
 ## since we have 8 values for Fall, this is put first. The remaining levels all have 4 values, so are sorted in the default alphabetical order 
 
 summary(injury)
 ```
+
 To move or reorder the levels of our factor, we can use `fct_relevel()`
 
 ```{r fctrelevel}
-# move Crushing to be first 
-fct_relevel(injury, "Crushing", "Accidental exposure") %>% 
+# move Crushing to be first
+fct_relevel(injury, "Crushing", "Accidental exposure") %>%
   levels()
 
-# you can also use indexing 
-## this moves Fall to the 3rd position 
-fct_relevel(injury, "Fall", after = 2) %>% 
+# you can also use indexing
+## this moves Fall to the 3rd position
+fct_relevel(injury, "Fall", after = 2) %>%
   levels()
 ```
 
@@ -961,12 +960,12 @@ In looking at the levels of our factor object, we can see there is a typo in "Sc
 ```{r fctrecode}
 # note the syntax where the new level is not a character string but the old level is
 ## I often forget this syntax and need to look this up 
-injury <- fct_recode(injury, Scald = "Scakld")  
+injury <- fct_recode(injury, Scald = "Scakld")
 
 levels(injury)
 
-# also useful to create new levels entirely and not just fix a typo 
-fct_recode(injury, `New level` = "Fall", `New level 2` = "Crushing") %>% 
+# also useful to create new levels entirely and not just fix a typo
+fct_recode(injury, `New level` = "Fall", `New level 2` = "Crushing") %>%
   summary()
 
 # note above I used `` around New level because it includes a space! Remove the `` and see what happens 
@@ -983,24 +982,26 @@ summary(injury2)
 We can see that Z has been added, but it is unused. So let's remove it with `fct_drop()`
 
 ```{r fctdrop}
-fct_drop(injury2) %>% 
+fct_drop(injury2) %>%
   summary()
 ```
+
 We can use `fct_collapse()` to collapse or combine levels of a factor into manually defined groups 
 
 ```{r fctcollapse}
-fct_collapse(injury2, 
+fct_collapse(injury2,
              Other = c("Fall", "Scald"),
-             Missing = "Z") %>% 
+             Missing = "Z") %>%
   summary()
 
 # depending on your use case, can be similar to fct_recode()
 # fct_collapse is particularly useful when you want to combine/collapse levels as well as rename/recode them 
 ```
+
 You can use `fct_lump_()` to collapse the least/most frequent values of a factor into "other"
 
 ```{r fctlump}
-fct_lump_min(injury2, min = 5) %>% 
+fct_lump_min(injury2, min = 5) %>%
   levels()
 ```
 
@@ -1038,16 +1039,15 @@ In R, date-time classes are not a primitive data type. Instead, to work with dat
 To get the current date or date-time, we can use the `today()` or `now()` functions
 
 ```{r datetimenow}
-# for date object 
+# for date object
 vtoday <- today()
 
 vtoday
 
-# for date-time object 
+# for date-time object
 vnow <- now() # because we set the system time zone at the top of the document in our libraries code chunk, lubridate already knows what timezone we are in 
 
 vnow
-
 ```
 
 We can get the individual components of our datetime and date objects with the accessor functions:
@@ -1079,9 +1079,7 @@ hour(vnow)
 minute(vnow)
 
 second(vnow)
-
 ```
-
 
 The 3 ways you will most likely create a date/time are 
 
@@ -1094,21 +1092,19 @@ The 3 ways you will most likely create a date/time are
 Let's look at some of the helper functions in Option 1. 
 
 ```{r lubridate-2}
-# month day year input 
+# month day year input
 mdy("May 31st, 2024")
 
-# day month year input 
+# day month year input
 dmy("31-May-2024")
 
-# year month day input 
+# year month day input
 ymd("2024-May-31")
 
-## these functions also take unqrouped numbers 
-
+## these functions also take unqrouped numbers
 ymd(20240531)
 
 ## you can also use these functions to create a datetime object by adding an _ and h ms or s 
-
 ymd_hms("2023 May 31 15:45:34")
 
 ## you can also force the creation of a datetime object by specifying a timezone 
@@ -1133,7 +1129,6 @@ To get a list of the timezone names, you can use `OlsonNames()`
 OlsonNames()
 ```
 
-
 Timezones in R are an attribute of date-time that only control printing. For example, these 3 objects represent the same instant in time: 
 
 ```{r timezones-1}
@@ -1145,7 +1140,6 @@ x2
 
 x3 <- ymd_hms("2024-06-02 04:00:00", tz = "Pacific/Auckland")
 x3
-
 ```
 
 You can verify they are the same using subtraction 
@@ -1200,13 +1194,13 @@ In `lubridate` there are 3 important classes to represent time spans
 In R, when you subtract two dates, you get a `difftime` object, which records a time span of seconds, minutes, hours, days, or weeks. This ambiguity can make `difftimes` a little painful to work with, so we can use `duration` instead! 
 
 ```{r difftime-duration}
-# difftime 
+# difftime
 tdiff <- today() - ymd(20221014)
 
 tdiff
 class(tdiff)
 
-# duration 
+# duration
 tdiff_d <- as.duration(tdiff)
 
 tdiff_d
@@ -1244,8 +1238,9 @@ class(tomorrow)
 last_year <- today() - dyears(1)
 
 last_year
-class(last_year) 
+class(last_year)
 ```
+
 Because Durations represent an exact number of seconds, sometimes you might get an unexpected result...
 
 ```{r durations-2}
@@ -1285,18 +1280,19 @@ Similarly, Periods can also be added or multiplied as well as added to dates.
 
 days(50) + hours(25) + minutes(2)
 ```
+
 When adding to dates, compared to Durations, Periods are more likely to do what you expect:
 
 ```{r periods-3}
 # A leap year
-## duration 
+## duration
 ymd("2024-01-01") + dyears(1)
 
 ## period
 ymd("2024-01-01") + years(1)
 
 # Daylight Savings Time
-## duration 
+## duration
 one_pm + ddays(1)
 
 ## period
@@ -1316,9 +1312,8 @@ int_ny <- (today() %--% next_year)
 int_ny
 class(int_ny)
 
-# we can use integer division to find out how many Periods fall in an Interval 
+# we can use integer division to find out how many Periods fall in an Interval
 (today() %--% next_year) %/% days(1)
-
 ```
 
 The take home message around durations, periods, and intervals is: 
@@ -1339,7 +1334,7 @@ In R, NA is a valid logical object, where as NaN is a special double-precision f
 ```{r na-1}
 typeof(NA)
 
-NA & TRUE 
+NA & TRUE
 
 NA & FALSE
 ```
@@ -1366,7 +1361,6 @@ To get the not NA values, we can use the ! (not) operator or `complete.cases()` 
 complete.cases(num_obj2)
 ```
 
-
 When computing mathematical operations with missing data, most R functions will return NA. This is the case for `abs()`, `sum()`, `min()`, and `max()` described above in the Numeric section. Luckily, there is a logical argument `na.rm = TRUE/FALSE` that can be specified. This asks, 'should missing values (NA and NaN) be removed?' By default, this is typically set to FALSE. When you pull up the documentation for a function in R (`?function()`) if you look under 'Usage' you can see what the default behaviors are for different arguments. Try this for `sum()`
 
 In general, most R functions have a means of dealing with missing values. Not all will use `na.rm`, so it is good practice to check the documentation when using a new function not only to double-check that the default behavior is as you expect, but also to see how to deal with missing data. 
@@ -1385,15 +1379,13 @@ str_ex <- c(NA, "abc", "def")
 str_replace_na(str_ex)
 
 ## you can also specify the replacement
-
 str_replace_na(str_ex, replacement = "Missing")
-
 ```
 
 More generally, the `replace_na()` function from the `tidyr` package in the tidyverse is useful to replace NA values with a specified value. Particularly when working with data frames this is a useful function. 
 
 ```{r rpl-na}
-num_obj2 %>% 
+num_obj2 %>%
   replace_na(replace = 0)
 
 # Note: replacing NAs with 0 is not always good practice, particularly when 0 is meaning in the context of the data. You need to think carefully about your data and what is appropriate. 
@@ -1402,9 +1394,11 @@ num_obj2 %>%
 What happens if we try to replace the missing numeric value with a character string? 
 
 ```{r rpl-na-2}
-# uncomment the code below to find out 
-#num_obj2 %>% 
-#  replace_na(replace = "missing") 
+# uncomment the code below to find out
+#num_obj2 %>%
+#  replace_na(replace = "missing")
+num_obj2 %>%
+  replace_na(replace = 0)
 ```
 
 Oh no! A data type error! Because `num_obj2` is numeric/double, the missing value must also be replaced with a numeric value. 
