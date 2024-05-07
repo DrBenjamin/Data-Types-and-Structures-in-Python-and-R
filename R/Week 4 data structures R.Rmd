@@ -483,7 +483,7 @@ We will be working with tibbles in this course specifically. In the following se
 We will be using the gapminder data set, which is available in R in the `gapminder` package. We saw this dataset briefly in the Week 1 tutorial. Instead of reading in the data through the package, we will do so with the `read_csv()` function, which allows us to read in a local data file saved in CSV format. 
 
 ```{r read-indata}
-gap_data <- read_csv("../data/gapminder_data_unfiltered.csv")
+gap_data <- read_csv("./data/gapminder_data_unfiltered.csv")
 # be sure to modify the code above to fit your own folder structure/file path to where you put the data file
 
 ## notice that when we read in data with read_csv, we get a message with some information about how the data was parsed. There are 3313 rows and 6 columns, 2 of which were parsed as a character data type and 4 as a double
@@ -537,7 +537,6 @@ Useful functions within a `summarise()` call include:
 
 ```{r group-by}
 # lets group our data by continent and get the mean population
-
 gap_data %>%
   group_by(continent) %>%
   summarise(mean_pop = mean(pop))
@@ -603,7 +602,6 @@ gap_data %>%
 
 ```{r mutate-2}
 # to get the mean population across all years per country we just first need to do a group_by
-
 gap_data %>%
   group_by(country) %>%
   mutate(mean_pop_country = mean(pop))
