@@ -22,7 +22,7 @@ The aim of this tutorial notebook is to give you some (guided) hands-on experien
 Sys.setenv(TZ = "Europe/London") # set timezone (TZ argument) to whatever timezone you may be in. The allows the to packages to work as intended
 
 library(tidyverse)
-library(lubridate) #if using tidyverse 2.0.0 or later lubridate will be loaded with the tidyverse 
+library(lubridate) # if using tidyverse 2.0.0 or later lubridate will be loaded with the tidyverse
 ```
 
 
@@ -48,16 +48,16 @@ Answer the following questions as it relates to vector `x`.
 8. Merge vector x with the vector y. Before running the code, What do you expect the resulting data type of the vector to be and why?   
 
 ```{r vector}
-x <- c(3, 67, 89.4, 50, 111, 45, 2, 6,8, 45,
-       32, 444, 65, 47, 8, 90, 2, 95, 21, 1)
+x <- c(
+  3, 67, 89.4, 50, 111, 45, 2, 6, 8, 45,
+  32, 444, 65, 47, 8, 90, 2, 95, 21, 1
+)
 
 y <- c("Edinburgh", "Glasgow", "Stirling")
 ```
 
 ```{r}
-## your answer 
-
-
+## your answer
 ```
 
 #### Task 1-8 solutions 
@@ -70,22 +70,19 @@ length(x)
 
 ```{r task-2}
 typeof(x)
-
 ```
 
 ```{r task-3}
-x[x <= 50] 
+x[x <= 50]
 x[x <= 50] %>% length()
 
-## or to get the index of the values 
-
+## or to get the index of the values
 which(x <= 50)
 ```
 
 ```{r task-4}
 x[x > 35]
 x[x > 35] %>% length()
-
 ```
 
 ```{r task-5}
@@ -96,13 +93,12 @@ x[x < 40 | x > 80] %>% length()
 ```{r task-6}
 mean(x)
 
-## or for mean plus other info 
+## or for mean plus other info
 summary(x)
 ```
 
 ```{r task-7}
 sort(x)
-
 ```
 
 ```{r task-8}
@@ -119,9 +115,7 @@ The resulting vector is a character because vectors can only contain 1 data type
 Create a list containing strings, numbers, vectors and logical values. 
 
 ```{r}
-### your answer 
-
-
+### your answer
 ```
 
 
@@ -130,11 +124,12 @@ Create a list containing strings, numbers, vectors and logical values.
 There are endless potential solutions, the primary point is to emphasize that lists can contain multiple data types and to check your understanding of what these data types are by name. 
 
 ```{r task-9}
-list_data <- list("orange", "apple", 
-                  c(5, 7, 9, 11), TRUE, 125.17, 75.83)
+list_data <- list(
+  "orange", "apple",
+  c(5, 7, 9, 11), TRUE, 125.17, 75.83
+)
 
 list_data
-
 ```
 
 ### Task 10 
@@ -144,22 +139,22 @@ Create a named list comprised of colors blue, red, green; animals dog, cat, hors
 **Hint** Do not forget that there is a difference between `[]` and `[[ ]]`
 
 ```{r}
-## your answer 
-
-
+## your answer
 ```
 
 #### Task 10 Solution 
 
 ```{r task-10}
-# create list 
-named_list <- list(colors = c("blue", "red", "green"),
-                   animals = c("dog", "cat", "horse"),
-                   age = c(33, 56, 24))
+# create list
+named_list <- list(
+  colors = c("blue", "red", "green"),
+  animals = c("dog", "cat", "horse"),
+  age = c(33, 56, 24)
+)
 
 named_list
 
-# add new name value pair 
+# add new name value pair
 named_list[["flower"]] <- c("daisy", "rose", "lily")
 
 ## or
@@ -169,7 +164,7 @@ named_list[["flower"]] <- c(named_list[["flower"]], c("daisy", "rose", "lily"))
 named_list
 
 
-# convert to tibble 
+# convert to tibble
 named_list_df <- as_tibble(named_list)
 
 named_list_df
@@ -195,9 +190,7 @@ Look through the imported data to check it looks as it should based on the data 
 This will help in solving the task, but you will need to use some other summary/description functions as well.
 
 ```{r}
-## your answer 
-
-
+## your answer
 ```
 
 #### Task 11 Solution 
@@ -225,20 +218,22 @@ We do not need all of the columns in the dataset. The only variables we need for
 
 
 ```{r}
-## your answer 
-
-
+## your answer
 ```
 
 #### Task 12 Solution 
 
 ```{r task-12}
-stroke <- stroke_raw %>% 
-# the filter function must come first as after select, the HBR and Sex variables do not exist anymore. Try to run the code with the select function first and see what happens
-  filter(HBR == "S92000003",
-         Sex == "All") %>% 
-  select(FinancialYear, AdmissionType, AgeGroup,
-         Diagnosis, NumberOfDischarges)
+stroke <- stroke_raw %>%
+  # the filter function must come first as after select, the HBR and Sex variables do not exist anymore. Try to run the code with the select function first and see what happens
+  filter(
+    HBR == "S92000003",
+    Sex == "All"
+  ) %>%
+  select(
+    FinancialYear, AdmissionType, AgeGroup,
+    Diagnosis, NumberOfDischarges
+  )
 
 stroke
 ```
@@ -248,24 +243,24 @@ stroke
 Check the data types of the remaining 5 variables and convert them to a better data type if needed. 
 
 ```{r}
-### your answer 
-
-
+### your answer
 ```
 
 #### Task 13 Solution 
 
 ```{r task-13}
-glimpse(stroke) 
+glimpse(stroke)
 
-stroke <- stroke %>% 
-  mutate(FinancialYear = as.factor(FinancialYear),
-         AdmissionType = as.factor(AdmissionType),
-         AgeGroup = as.factor(AgeGroup),
-         Diagnosis = as.factor(Diagnosis))
+stroke <- stroke %>%
+  mutate(
+    FinancialYear = as.factor(FinancialYear),
+    AdmissionType = as.factor(AdmissionType),
+    AgeGroup = as.factor(AgeGroup),
+    Diagnosis = as.factor(Diagnosis)
+  )
 
-## a more advanced and elegant solution is to using the across and where functions to coerce all characters to be factors since all of the variables we wanted to change were characters 
-stroke %>% 
+## a more advanced and elegant solution is to using the across and where functions to coerce all characters to be factors since all of the variables we wanted to change were characters
+stroke %>%
   mutate(across(where(is.character), as.factor))
 ```
 
@@ -277,40 +272,38 @@ Look at the levels within the factors - is there anything unexpected?
 *Hint* Using `select()` here will not work as expected. This is due to the data structure resulting from the `select()` function - a tibble! If you want to pass via the pipe `%>%` to a function which requires a vector input, you will instead want to use the function `pull()` from `dpylr`. 
 
 ```{r}
-## your answer 
-
-
+## your answer
 ```
 
 
 #### Task 14 Solution
 
 ```{r task-14}
-stroke %>% 
+stroke %>%
   pull(FinancialYear) %>%
   levels()
 
-# as mentioned above, notice that using select gives us NULL, which remember is a reserved word in R representing an undefined value 
+# as mentioned above, notice that using select gives us NULL, which remember is a reserved word in R representing an undefined value
 
-stroke %>% 
-  select(FinancialYear) %>% 
+stroke %>%
+  select(FinancialYear) %>%
   levels()
 
-stroke %>% 
-  pull(AdmissionType) %>% 
+stroke %>%
+  pull(AdmissionType) %>%
   levels()
 
-stroke %>% 
-  pull(AgeGroup) %>% 
+stroke %>%
+  pull(AgeGroup) %>%
   levels()
 
-stroke %>% 
-  pull(Diagnosis) %>% 
+stroke %>%
+  pull(Diagnosis) %>%
   levels()
-  
-## when you have the correct data types in place (meaning characters are factors when you want them to be), the summary function will provide the factor levels and observations per level! Using data types to our advantage! 
 
-stroke %>% 
+## when you have the correct data types in place (meaning characters are factors when you want them to be), the summary function will provide the factor levels and observations per level! Using data types to our advantage!
+
+stroke %>%
   summary()
 ```
 
@@ -331,20 +324,18 @@ It looks like some of our variables include aggregate level responses! Good thin
 
 ```{r}
 ## your answer
-
-
 ```
 
 #### Task 15 Solution 
 
 ```{r task-5}
-stroke <- stroke %>% 
-  # first filter to out aggregate levels 
-  ## here ! means NOT so it is doing the opposite, meaning keeping only the rows that are NOT all or under75 years 
-  filter(!AgeGroup %in% c("All", "under75 years")) %>% 
+stroke <- stroke %>%
+  # first filter to out aggregate levels
+  ## here ! means NOT so it is doing the opposite, meaning keeping only the rows that are NOT all or under75 years
+  filter(!AgeGroup %in% c("All", "under75 years")) %>%
   mutate(AgeGroup = as.ordered(AgeGroup))
 
-stroke # we can see now that AgeGroup is <ord> for ordered factor 
+stroke # we can see now that AgeGroup is <ord> for ordered factor
 ```
 
 
@@ -359,21 +350,21 @@ Create a summary table with the average number of discharges with a stroke diagn
 **Hint 3** Would it help of the data were grouped? 
 
 ```{r}
-## your answer 
-
-
+## your answer
 ```
 
 #### Task 16 Solution 
 
 ```{r task-16}
-stroke %>% 
-  filter(AdmissionType == "All", 
-         Diagnosis == "Stroke",
-         FinancialYear %in% c("2021/22", "2022/23")) %>%
-  # change the order of the group by variables to see how the output changes 
-  group_by(FinancialYear, AgeGroup) %>% 
-  summarise(mean_discharge  = mean(NumberOfDischarges))
+stroke %>%
+  filter(
+    AdmissionType == "All",
+    Diagnosis == "Stroke",
+    FinancialYear %in% c("2021/22", "2022/23")
+  ) %>%
+  # change the order of the group by variables to see how the output changes
+  group_by(FinancialYear, AgeGroup) %>%
+  summarise(mean_discharge = mean(NumberOfDischarges))
 ```
 
 ---
